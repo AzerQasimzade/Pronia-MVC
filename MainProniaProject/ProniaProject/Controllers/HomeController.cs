@@ -17,11 +17,12 @@ namespace ProniaProject.Controllers
         {
             List<Slide> slides=_context.Slides.OrderBy(s=>s.Order).Take(2).ToList();    
             List<Product>products=_context.Products.ToList();
-
+            List<Product>latestproducts=_context.Products.OrderByDescending(s=>s.Id).Take(8).ToList();
             HomeVM home = new HomeVM
             {
                 Slides = slides,
                 Products = products,
+                LatestProducts = latestproducts,
             };
 
             return View(home);
