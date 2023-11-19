@@ -7,5 +7,7 @@ namespace ProniaProject.ViewModels
         public List<Slide> Slides { get; set; }
         public List<Product> Products { get; set; }
         public List<Product> LatestProducts { get; set; }
+
+
     }
 }

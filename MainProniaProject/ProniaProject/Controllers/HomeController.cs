@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProniaProject.DAL;
 using ProniaProject.Models;
 using ProniaProject.ViewModels;
@@ -16,7 +17,9 @@ namespace ProniaProject.Controllers
         public IActionResult Index()
         {
             List<Slide> slides=_context.Slides.OrderBy(s=>s.Order).Take(2).ToList();    
-            List<Product>products=_context.Products.ToList();
+            List<Product>products=_context.Products
+                .Include(x => x.ProductImages)
+                .ToList();
             List<Product>latestproducts=_context.Products.OrderByDescending(s=>s.Id).Take(8).ToList();
             HomeVM home = new HomeVM
             {

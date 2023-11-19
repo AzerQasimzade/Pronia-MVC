@@ -781,10 +781,10 @@
                                         <div class="product-img">
                                             <a href="shop.html">
                                                 <img class="primary-img"
-                                                     src="~/assets/images/website-images//@item.Image"
+                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
                                                      alt="Product Images" />
                                                 <img class="secondary-img"
-                                                     src="~/assets/images/website-images//1-8-270x300.jpg"
+                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url"
                                                      alt="Product Images" />
                                             </a>
                                             <div class="product-add-action">
@@ -845,7 +845,7 @@
                                     </div>
                                 </div>
                             }
-                            
+  
                         </div>
                     </div>
                 </div>
@@ -946,16 +946,16 @@
             <div class="col-lg-12">
                 <div class="swiper-container product-slider">
                     <div class="swiper-wrapper">
-                        @foreach (Product item in Model.Products)
+                        @foreach (var item in Model.LatestProducts)
                         {
                             <div class="swiper-slide product-item">
                                 <div class="product-img">
                                     <a href="shop.html">
                                         <img class="primary-img"
-                                             src="~/assets/images/website-images//@item.Image"
+                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
                                              alt="Product Images" />
                                         <img class="secondary-img"
-                                             src="~/assets/images/website-images//1-10-270x300.jpg"
+                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url"
                                              alt="Product Images" />
                                     </a>
                                     <div class="product-add-action">
