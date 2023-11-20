@@ -1,5 +1,8 @@
 ﻿@model ProductVM
 
+@{
+    int count = 0;
+}
 <!-- Begin Main Content Area  -->
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height"
@@ -59,19 +62,19 @@
                         <div class="thumbs-arrow-holder">
                             <div class="swiper-container single-product-thumbs">
                                 <div class="swiper-wrapper">
-                                    <a href="#" class="swiper-slide">
+                                    <a  asp-controller="product" asp-action="detail" asp-route-Id="@Model.Products.Id" class="swiper-slide">
                                         <img class="img-full"
                                              src="~/assets/images/website-images/@Model.Products.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
                                              alt="Product Thumnail" />
                                     </a>
-                                    <a href="#" class="swiper-slide">
+                                    <a asp-controller="product" asp-action="detail" asp-route-Id="@Model.Products.Id" class="swiper-slide">
                                         <img class="img-full"
                                              src="~/assets/images/website-images/@Model.Products.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url"
                                              alt="Product Thumnail"/>
                                     </a>
                                     @foreach (var item in Model.Products.ProductImages)
                                     {
-                                        <a href="" class="swiper-slide">
+                                        <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Product.Id" class="swiper-slide">
                                             <img class="img-full"
                                                  src="~/assets/images/website-images/@item.Product.ProductImages.FirstOrDefault(x=>x.IsPrimary==null).Url"
                                                  alt="Product Thumnail" />
@@ -115,18 +118,20 @@
                         <div class="selector-wrap color-option">
                             <span class="selector-title border-bottom-0">Color</span>
                             <select class="nice-select wide border-bottom-0 rounded-0">
-                                <option value="default">Black & White</option>
-                                <option value="blue">Blue</option>
-                                <option value="green">Green</option>
-                                <option value="red">Red</option>
+                                @foreach (var item in Model.Products.ProductColors)
+                                {
+                                    <option value="default">@item.Color.Name</option>
+                                }                           
                             </select>
                         </div>
                         <div class="selector-wrap size-option">
                             <span class="selector-title">Size</span>
                             <select class="nice-select wide rounded-0">
-                                <option value="medium">Medium Size & Poot</option>
-                                <option value="large">Large Size With Poot</option>
-                                <option value="small">Small Size With Poot</option>
+                                
+                                @foreach (var item in Model.Products.ProductSizes)
+                                {
+                                    <option value="medium">@item.Size.Name</option>
+                                }
                             </select>
                         </div>
                         <p class="short-desc">
@@ -211,11 +216,15 @@
                         </div>
                         <div class="product-category product-tags">
                             <span class="title">Tags :</span>
-                            <ul>
-                                <li>
-                                    <a href="#">Furniture</a>
-                                </li>
-                            </ul>
+                            @foreach (var item in Model.Products.ProductTags)
+                            {
+                                count++;
+                                <ul>
+                                    <li>
+                                        <a href="#">@item.Tag.Name @(Model.Products.ProductTags.Count==count ? "" :",")</a>
+                                    </li>
+                                </ul>
+                            }
                         </div>
                         <div class="product-category social-link align-items-center pb-0">
                             <span class="title pe-3">Share:</span>

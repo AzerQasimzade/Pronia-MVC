@@ -779,7 +779,7 @@
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="product-item">
                                         <div class="product-img">
-                                            <a href="shop.html">
+                                            <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id">
                                                 <img class="primary-img"
                                                      src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
                                                      alt="Product Images" />
@@ -950,7 +950,7 @@
                         {
                             <div class="swiper-slide product-item">
                                 <div class="product-img">
-                                    <a href="shop.html">
+                                    <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id">
                                         <img class="primary-img"
                                              src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
                                              alt="Product Images" />
@@ -999,7 +999,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <a class="product-name" href="shop.html">@item.Name</a>
+                                    <a class="product-name" asp-controller="product" asp-action="detail" asp-route-Id="@item.Name">@item.Name</a>
                                     <div class="price-box pb-1">
                                         <span class="new-price">$@item.Price</span>
                                     </div>
