@@ -7,7 +7,12 @@ builder.Services.AddDbContext<AppDbContext>(
     opt=>opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
     );
 var app = builder.Build();
-app.UseStaticFiles(); 
+app.UseStaticFiles();
+app.MapControllerRoute(
+     name: "areas",
+     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    ) ;
+
 app.MapControllerRoute(
     name: "Pronia",
     pattern:"{controller=home}/{action=index}/{id?}"

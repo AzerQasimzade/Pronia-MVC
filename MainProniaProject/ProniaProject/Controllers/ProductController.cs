@@ -20,13 +20,13 @@ namespace ProniaProject.Controllers
         {
             _context = context;
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
             if (id<=0)
             {
                 return BadRequest();
             }
-            Product product= _context.Products
+            Product product=await _context.Products
                 .Include(x=>x.ProductSizes)
                 .ThenInclude(x=>x.Size)
                 .Include(x=>x.Category)
@@ -35,15 +35,15 @@ namespace ProniaProject.Controllers
                 .ThenInclude(x=>x.Color)
                 .Include(x=>x.ProductTags) 
                 .ThenInclude(x=>x.Tag)              
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (product is null)
             {
                 return NotFound();
             }
-            List<Product> relatedproducts = _context.Products   
+            List<Product> relatedproducts =await _context.Products   
                 .Include(x=>x.Category)
                 .Include(x => x.ProductImages)
-                .Where(x=>x.Id!=id).Where(x => x.CategoryId==product.CategoryId).ToList();
+                .Where(x=>x.Id!=id).Where(x => x.CategoryId==product.CategoryId).ToListAsync();
             ProductVM productVM = new ProductVM
             {
 
