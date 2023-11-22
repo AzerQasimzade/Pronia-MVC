@@ -34,7 +34,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             {
                 return View();
             }
-
             bool result = _context.Categories.Any(x => x.Name == category.Name);
 
             if (result) 
@@ -44,7 +43,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             }
             await _context.Categories.AddAsync(category);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
 
             

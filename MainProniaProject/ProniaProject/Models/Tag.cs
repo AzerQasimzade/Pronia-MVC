@@ -10,7 +10,7 @@ namespace ProniaProject.Models
         [MaxLength(25, ErrorMessage = "25 den uzun deyer gonderilmemelidir")]
         public string Name { get; set; }
 
-        public List<ProductTag> ProductTags { get; set; }
+        public List<ProductTag>? ProductTags { get; set; }
 
 
     }

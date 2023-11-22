@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJvbmlhQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Desktop/ProniaProject/MainProniaProject/ProniaProject/Areas/ProniaAdmin/Views/Size/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJvbmlhQWRtaW5cVmlld3NcU2l6ZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/ProniaProject/MainProniaProject/ProniaProject/Areas/ProniaAdmin/Views/Size/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJvbmlhQWRtaW5cVmlld3NcU2l6ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Desktop/ProniaProject/MainProniaProject/ProniaProject/Areas/ProniaAdmin/Views/Tag/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUHJvbmlhQWRtaW5cVmlld3NcVGFnXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

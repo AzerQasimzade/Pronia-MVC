@@ -6,48 +6,41 @@ using ProniaProject.Models;
 namespace ProniaProject.Areas.ProniaAdmin.Controllers
 {
     [Area("ProniaAdmin")]
-
-    public class ColorController : Controller
+    public class SizeController : Controller
     {
-        public readonly AppDbContext _context;
-
-        public ColorController(AppDbContext context)
+        private readonly AppDbContext _context;
+        public SizeController(AppDbContext context)
         {
             _context = context;
         }
         public async Task<IActionResult> Index()
         {
-            List<Color> colors = await _context.Colors
-                .Include(x=>x.ProductColors)
+            List<Size> tags = await _context.Sizes
+                .Include(x => x.ProductSizes)
                 .ToListAsync();
-            return View(colors);
+            return View(tags);
         }
         public IActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
-        public async Task<IActionResult> Create(Color color)
+        public async Task<IActionResult> Create(Size size)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-
-            bool result = _context.Colors.Any(x => x.Name == color.Name);
+            bool result = _context.Sizes.Any(x => x.Name == size.Name);
 
             if (result)
             {
-                ModelState.AddModelError("Name", "Bu adda color artiq movcuddur");
+                ModelState.AddModelError("Name", "Bu adda tag artiq movcuddur");
                 return View();
             }
-            await _context.Colors.AddAsync(color);
+            await _context.Sizes.AddAsync(size);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
-
-
         }
     }
 }
