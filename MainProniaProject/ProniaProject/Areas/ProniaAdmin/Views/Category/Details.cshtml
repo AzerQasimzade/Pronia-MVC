@@ -1,0 +1,16 @@
+﻿@model Category
+
+<div class="card" style="width: 30rem;">
+    @foreach (var item in Model.Products)
+    {
+        <img src="@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true)" class="card-img-top" alt="...">
+    }
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Name</li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item">A third item</li>
+    </ul>

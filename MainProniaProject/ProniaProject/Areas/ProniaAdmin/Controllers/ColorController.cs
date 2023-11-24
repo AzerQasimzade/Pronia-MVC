@@ -46,8 +46,58 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            Color color = await _context.Colors.FirstOrDefaultAsync(x => x.Id == id);
 
+            if (color is null)
+            {
+                return NotFound();
+            }
+            return View(color);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, Color color)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            Color existed = await _context.Colors.FirstOrDefaultAsync(x => x.Id == id);
+            if (existed is null)
+            {
+                return NotFound();
+            }
+            bool result = await _context.Colors.AnyAsync(x => x.Name == color.Name && x.Id != color.Id);
+            if (result)
+            {
+                ModelState.AddModelError("Name", "We have Same Color Name.Please Try Another Name");
+                return View();
+            }
+            existed.Name = color.Name;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            Color color = await _context.Colors.FirstOrDefaultAsync(x => x.Id == id);
 
+            if (color is null)
+            {
+                return NotFound();
+            }
+            _context.Colors.Remove(color);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

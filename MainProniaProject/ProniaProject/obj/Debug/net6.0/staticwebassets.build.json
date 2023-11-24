@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iQEYlbk7CQxaeygCVlBfXatmG/Be3GyEDIFMYhNcHqg=",
+  "Hash": "HR5vs2J/2mtLHkluf28RIAEKheeNilX2r9eWdDRZetc=",
   "Source": "ProniaProject",
   "BasePath": "_content/ProniaProject",
   "Mode": "Default",
@@ -3534,6 +3534,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg\\2-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg",
+      "SourceId": "ProniaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
+      "BasePath": "_content/ProniaProject",
+      "RelativePath": "assets/images/slider/dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\flower 1.jpg",

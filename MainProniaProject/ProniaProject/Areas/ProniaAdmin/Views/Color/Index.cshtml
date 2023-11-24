@@ -44,8 +44,8 @@
                                                @color.ProductColors.Count
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning btn-info"><i class="mdi mdi-grease-pencil"></i></a>
-                                                <a class="btn btn-danger btn-info">
+                                                <a asp-controller="Color" asp-action="Update" asp-route-id="@color.Id" class="btn btn-warning btn-info"><i class="mdi mdi-grease-pencil"></i></a>
+                                                <a asp-controller="Color" asp-action="Delete" asp-route-id="@color.Id" class="btn btn-danger btn-info">
                                                     <i class="mdi mdi-delete-forever"></i>
                                                 </a>
                                                 <a class="btn btn-primary "><i class="mdi mdi-open-in-new"></i></a>
