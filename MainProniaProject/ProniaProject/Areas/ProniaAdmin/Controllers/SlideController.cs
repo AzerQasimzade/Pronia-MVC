@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProniaProject.DAL;
 using ProniaProject.Models;
+using ProniaProject.Utilities.Enums;
 using ProniaProject.Utilities.Extensions;
 
 namespace ProniaProject.Areas.ProniaAdmin.Controllers
@@ -33,27 +34,68 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
                 ModelState.AddModelError("Photo", "Shekil mutlew secilmelidir");
                 return View();
             }
-
-            if (slide.Photo.CheckFileType("image/"))
+            if (!slide.Photo.ValidateFileType(FileHelper.Image))
             {
                 ModelState.AddModelError("Photo", "File tipi uygun deyil");
                 return View();
             }
-            if (!slide.Photo.ValidateSize(2*1024))
+            if (!slide.Photo.ValidateSize(SizeHelper.mb))
             {
-                ModelState.AddModelError("Photo", "File olcusu 2 mb den boyuk olmamalidir");
+                ModelState.AddModelError("Photo", "File olcusu 1 mb den boyuk olmamalidir");
                 return View();
             }
-            string fileName = Guid.NewGuid().ToString() + slide.Photo.FileName;
-            string path = Path.Combine(_env.WebRootPath, "assets", "images", "slider", fileName);
-            FileStream file = new FileStream(path, FileMode.Create);
-            await slide.Photo.CopyToAsync(file);
-            file.Close();
-
-            slide.Image = fileName;
+            slide.Image = await slide.Photo.CreateFileAsync(_env.WebRootPath, "assets", "images", "slider");
             await _context.Slides.AddAsync(slide);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            Slide existed = await _context.Slides.FirstOrDefaultAsync(x => x.Id == id);
+            if (existed is null)
+            {
+                return NotFound();
+            }
+            existed.Image.DeleteFile(_env.WebRootPath, "assets", "images", "slider");
+            _context.Slides.Remove(existed);    
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public async Task<IActionResult> Details(int id)
+        //{
+        //    Slide slider = await _context.Slides
+        //        .Include(x => x.)
+        //        .ThenInclude(x => x.Product)
+        //        .ThenInclude(x => x.ProductImages)
+        //        .FirstOrDefaultAsync(x => x.Id == id);
+
+        //    if (slider is null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(tag);
+        //}
     }
 }

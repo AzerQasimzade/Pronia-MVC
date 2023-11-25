@@ -99,5 +99,19 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            Color color = await _context.Colors
+                .Include(x => x.ProductColors)
+                .ThenInclude(x => x.Product)
+                .ThenInclude(x => x.ProductImages)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (color is null)
+            {
+                return NotFound();
+            }
+            return View(color);
+        }
     }
 }

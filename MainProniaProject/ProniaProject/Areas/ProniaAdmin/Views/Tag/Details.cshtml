@@ -1,18 +1,18 @@
 ﻿@model Tag
-
 <div class="card" style="width: 18rem;">
-    <img src="@Model.ProductTags" class="card-img-top" alt="...">
+    @foreach (var item in Model.ProductTags)
+    {   
+       <img src="~/assets/images/website-images/@item.Product.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url" class="card-img-top" alt="Product Image">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">@item.Product.Name</li>
+            <li class="list-group-item">@item.Product.Price</li>
+            <li class="list-group-item">@item.Product.SKU</li>
+            <li class="list-group-item">@item.Product.Description</li>
+        </ul>
+    }
     <div class="card-body">
         <h5 class="card-title"></h5>
         <p class="card-text"></p>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">@Model.Name</li>
-        <li class="list-group-item"></li>
-        <li class="list-group-item">A third item</li>
-    </ul>
-    <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-    </div>
+   
 </div>

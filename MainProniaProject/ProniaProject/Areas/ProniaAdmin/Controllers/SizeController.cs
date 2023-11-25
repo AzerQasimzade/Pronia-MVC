@@ -25,7 +25,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(Size size)
         {
@@ -97,6 +96,19 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             _context.Sizes.Remove(size);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            Size size = await _context.Sizes
+                .Include(x => x.ProductSizes)
+                .ThenInclude(x => x.Product)
+                .ThenInclude(x => x.ProductImages)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (size is null)
+            {
+                return NotFound();
+            }
+            return View(size);
         }
     }
 }

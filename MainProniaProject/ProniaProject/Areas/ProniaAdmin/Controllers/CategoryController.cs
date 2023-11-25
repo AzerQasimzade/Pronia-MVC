@@ -98,20 +98,14 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             await _context.SaveChangesAsync();  
             return RedirectToAction(nameof(Index));         
         }
-
         public async Task<IActionResult> Details(int id)
         {
-
-            if (id <= 0)
-            {
-                return BadRequest();
-            }
             Category category = await _context.Categories
                 .Include(x=>x.Products)
                 .ThenInclude(x=>x.ProductTags)
                 .ThenInclude(x=>x.Tag)
-                .Include(x=>x.Products)
-                .ThenInclude(x=>x.ProductImages)
+                .Include(x => x.Products)
+                .ThenInclude(x=>x.ProductImages) 
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (category is null)
             {

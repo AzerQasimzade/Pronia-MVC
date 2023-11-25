@@ -1,0 +1,18 @@
+﻿@model Size
+<div class="card" style="width: 18rem;">
+    @foreach (var item in Model.ProductSizes)
+    {   
+       <img src="~/assets/images/website-images/@item.Product.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url" class="card-img-top" alt="Product Image">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">@item.Product.Name</li>
+            <li class="list-group-item">@item.Product.Price</li>
+            <li class="list-group-item">@item.Product.SKU</li>
+            <li class="list-group-item">@item.Product.Description</li>
+        </ul>
+    }
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+   
+</div>

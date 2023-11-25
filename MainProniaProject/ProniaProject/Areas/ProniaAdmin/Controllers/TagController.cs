@@ -102,11 +102,11 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            if (id <= 0)
-            {
-                return BadRequest();
-            }
-            Tag tag = await _context.Tags.Include(x => x.ProductTags).ThenInclude(x=>x.Product).ThenInclude(x=>x.ProductImages).FirstOrDefaultAsync(x => x.Id == id);
+            Tag tag = await _context.Tags
+                .Include(x => x.ProductTags)
+                .ThenInclude(x => x.Product)
+                .ThenInclude(x => x.ProductImages)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (tag is null)
             {

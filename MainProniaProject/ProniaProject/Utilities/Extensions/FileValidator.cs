@@ -1,34 +1,84 @@
-﻿using ProniaProject.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProniaProject.Models;
+using ProniaProject.Utilities.Enums;
 
 namespace ProniaProject.Utilities.Extensions
 {
     public static class FileValidator
     {
-        public static bool CheckFileType(this IFormFile file,string type)
+        public static bool ValidateFileType(this IFormFile file,FileHelper type)
         {
-            if (file.ContentType.Contains(type))
+            if (type == FileHelper.Image)
             {
-                return true;
+                if (file.ContentType.Contains("image/"))
+                {
+                    return true;
+                }
+                return false;
+            }
+            else if(type == FileHelper.Video)
+            {
+                if (file.ContentType.Contains("video/"))
+                {
+                    return true;
+                }
+                return false;
+            }
+            else if(type == FileHelper.Audio)
+            {
+                if (file.ContentType.Contains("audio/"))
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        public static bool ValidateSize(this IFormFile file,SizeHelper size)
+        {
+            long filesize = file.Length;
+
+            switch (size)
+            {
+                case SizeHelper.kb:
+                    return filesize <= 1024;
+                case SizeHelper.mb:
+                    return filesize <= 1024*1024;
+                case SizeHelper.gb: 
+                    return filesize <= 1024*1024*1024;
             }
             return false;
         }
 
-        public static bool ValidateSize(this IFormFile file,int kb)
+        public static async Task<string> CreateFileAsync(this IFormFile file, string root, params string[] folders)
         {
-            if (file.Length < kb * 1024)
+            string fileName = Guid.NewGuid().ToString() + file.FileName;
+            string path = root;
+            for (int i = 0; i < folders.Length; i++)
             {
-                return true;
+                path = Path.Combine(path, folders[i]);
             }
-            return false;
+            path= Path.Combine(path, fileName);
+            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+            return fileName;
+        }
+        public static async void DeleteFile(this string filename,string root, params string[] folders)
+        {
+            string path = root;
+            for (int i = 0; i < folders.Length; i++)
+            {
+                path = Path.Combine(path, folders[i]);
+            }
+            path=Path.Combine(path, filename);
+            if(File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
 
-        //public static void CreateFile(this IFormFile file1,string root,params string[] folders)
-        //{
-        //    string fileName = Guid.NewGuid().ToString() + file1.FileName;
-        //    string path = Path.Combine(_env.WebRootPath, "assets", "images", "slider", fileName);
-        //    FileStream file = new FileStream(path, FileMode.Create);
-        //    await slide.Photo.CopyToAsync(file);
-        //    file.Close();
-        //}
+
     }
 }

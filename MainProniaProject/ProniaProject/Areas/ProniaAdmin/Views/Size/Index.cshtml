@@ -47,7 +47,7 @@
                                                 <a asp-controller="Size" asp-action="Delete" asp-route-id="@size.Id" class="btn btn-danger btn-info">
                                                     <i class="mdi mdi-delete-forever"></i>
                                                 </a>
-                                                <a class="btn btn-primary "><i class="mdi mdi-open-in-new"></i></a>
+                                                <a asp-controller="Size" asp-action="Details" asp-route-id="@size.Id" class="btn btn-primary "><i class="mdi mdi-open-in-new"></i></a>
                                             </td>
                                         </tr>
                                     }
