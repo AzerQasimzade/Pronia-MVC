@@ -66,7 +66,7 @@ namespace ProniaProject.Utilities.Extensions
             return fileName;
         }
         public static async void DeleteFile(this string filename,string root, params string[] folders)
-        {
+        { 
             string path = root;
             for (int i = 0; i < folders.Length; i++)
             {

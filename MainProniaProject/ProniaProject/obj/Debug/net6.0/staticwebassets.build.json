@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w8ZNnc22VqcVffRMiecVTFlYj1qVfaAXM8zzFczXX/U=",
+  "Hash": "tNkl9PMNXhbT/tU1t6TogjhujyWXj5a3b5c1TaW87DQ=",
   "Source": "ProniaProject",
   "BasePath": "_content/ProniaProject",
   "Mode": "Default",
@@ -3500,23 +3500,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\sidebar\\banner\\1-270x300.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg",
-      "SourceId": "ProniaProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
-      "BasePath": "_content/ProniaProject",
-      "RelativePath": "assets/images/slider/3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\826e8f0d-a64f-43b1-993e-869c8c33bcdbScreenshot (164).png",

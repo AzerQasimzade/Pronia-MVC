@@ -3280,22 +3280,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\sidebar\banner\1-270x300.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\slider\3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>ProniaProject</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ProniaProject</BasePath>
-      <RelativePath>assets/images/slider/3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\slider\3719c48d-ad19-4618-941f-a39f72017534action-adventure-avatar-movies-wallpaper-preview.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\slider\826e8f0d-a64f-43b1-993e-869c8c33bcdbScreenshot (164).png))">
       <SourceType>Package</SourceType>
       <SourceId>ProniaProject</SourceId>
