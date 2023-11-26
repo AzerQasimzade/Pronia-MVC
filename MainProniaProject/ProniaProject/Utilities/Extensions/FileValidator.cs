@@ -7,32 +7,32 @@ namespace ProniaProject.Utilities.Extensions
     public static class FileValidator
     {
         public static bool ValidateFileType(this IFormFile file,FileHelper type)
-        {
-            if (type == FileHelper.Image)
-            {
-                if (file.ContentType.Contains("image/"))
+        {        
+                if (type == FileHelper.Image)
                 {
-                    return true;
+                    if (file.ContentType.Contains("image/"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else if (type == FileHelper.Video)
+                {
+                    if (file.ContentType.Contains("video/"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else if (type == FileHelper.Audio)
+                {
+                    if (file.ContentType.Contains("audio/"))
+                    {
+                        return true;
+                    }
                 }
                 return false;
-            }
-            else if(type == FileHelper.Video)
-            {
-                if (file.ContentType.Contains("video/"))
-                {
-                    return true;
-                }
-                return false;
-            }
-            else if(type == FileHelper.Audio)
-            {
-                if (file.ContentType.Contains("audio/"))
-                {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+            
         }
         public static bool ValidateSize(this IFormFile file,SizeHelper size)
         {

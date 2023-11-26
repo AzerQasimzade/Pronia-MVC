@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tNkl9PMNXhbT/tU1t6TogjhujyWXj5a3b5c1TaW87DQ=",
+  "Hash": "zWc+c9CgtfKwYaIVEl1p8I3skrcFt5rkBaWJuQ+zb9U=",
   "Source": "ProniaProject",
   "BasePath": "_content/ProniaProject",
   "Mode": "Default",
@@ -3519,12 +3519,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\826e8f0d-a64f-43b1-993e-869c8c33bcdbScreenshot (164).png"
     },
     {
-      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\ae19baf9-8f21-4721-85c5-95efb9577b10Screenshot (170).png",
+      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\9cfce642-3942-41a8-afe8-89d06c9956deScreenshot (164).png",
       "SourceId": "ProniaProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
       "BasePath": "_content/ProniaProject",
-      "RelativePath": "assets/images/slider/ae19baf9-8f21-4721-85c5-95efb9577b10Screenshot (170).png",
+      "RelativePath": "assets/images/slider/9cfce642-3942-41a8-afe8-89d06c9956deScreenshot (164).png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -3533,7 +3533,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\ae19baf9-8f21-4721-85c5-95efb9577b10Screenshot (170).png"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\9cfce642-3942-41a8-afe8-89d06c9956deScreenshot (164).png"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\bg\\1-1.jpg",
@@ -3568,23 +3568,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg\\2-1.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg",
-      "SourceId": "ProniaProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
-      "BasePath": "_content/ProniaProject",
-      "RelativePath": "assets/images/slider/dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\dace9bec-a56e-441d-8273-53d8e1fa6491Saffiremain.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\slider\\fcd5d151-dcf2-4997-8526-e8cf7679b0ffScreenshot (164).png",
