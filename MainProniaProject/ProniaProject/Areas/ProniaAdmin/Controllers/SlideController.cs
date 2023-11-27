@@ -107,7 +107,7 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             { 
                 return View(slideVM);
             }
-            if(slideVM is not null)
+            if(slideVM.Photo is not null)
             {
                 if (!slideVM.Photo.ValidateFileType(FileHelper.Image))
                 {
@@ -131,18 +131,16 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    Slide slide = await _context.Slides
-        //        .Include(x=>x.)
-              
-        //        .FirstOrDefaultAsync(x => x.Id == id);
-        //    if (slide is null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(slide);
-        //}
+        public async Task<IActionResult> Details(int id)
+        {
+            Slide slide = await _context.Slides
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (slide is null)
+            {
+                return NotFound();
+            }
+            return View(slide);
+        }
 
     }
 }
