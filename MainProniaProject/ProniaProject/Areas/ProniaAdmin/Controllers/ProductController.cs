@@ -37,13 +37,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             {
                 return View();
             }
-            //bool result = await _context.Categories.AnyAsync(x => x.Name == productVM.Name);
-            //if (!result)
-            //{
-            //    ModelState.AddModelError("Name", "We have not so Product with this Name");
-            //    return View();
-            //}
-
             bool result2 = await _context.Categories.AnyAsync(x => x.Id == productVM.CategoryId);
             if (!result2)
             {
@@ -62,6 +55,18 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            Product product = await _context.Products
+                .Include(x=>x.Category)
+                .Include(x=>x.ProductImages)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (product is null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
 
 

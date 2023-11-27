@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProniaProject.Areas.ProniaAdmin.ViewModels;
 using ProniaProject.DAL;
 using ProniaProject.Models;
 using System.Drawing;
@@ -29,20 +30,25 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Tag tag)
+        public async Task<IActionResult> Create(CreateTagVM tagVM)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            bool result = _context.Tags.Any(x => x.Name == tag.Name);
+            bool result = _context.Tags.Any(x => x.Name == tagVM.Name);
 
             if (result)
             {
                 ModelState.AddModelError("Name", "Bu adda tag artiq movcuddur");
                 return View();
             }
+            Tag tag = new Tag
+            {
+               Name = tagVM.Name
+
+            };
             await _context.Tags.AddAsync(tag);
             await _context.SaveChangesAsync();
 
@@ -60,10 +66,15 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             {
                 return NotFound();
             }
-            return View(tag);
+            UpdateTagVM tagVM = new UpdateTagVM
+            {
+                Name = tag.Name,
+            };
+
+            return View(tagVM);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(int id, Tag tag)
+        public async Task<IActionResult> Update(int id, UpdateTagVM tagVM)
         {
             if (!ModelState.IsValid)
             {
@@ -72,15 +83,15 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             Tag existed = await _context.Tags.FirstOrDefaultAsync(x => x.Id == id);
             if (existed is null)
             {
-                return NotFound();
+                return NotFound(tagVM);
             }
-            bool result = await _context.Tags.AnyAsync(x => x.Name == tag.Name && x.Id != tag.Id);
+            bool result = await _context.Tags.AnyAsync(x => x.Name == tagVM.Name && x.Id != tagVM.Id);
             if (result)
             {
                 ModelState.AddModelError("Name", "We have Same Tag Name.Please Try Another Name");
                 return View();
             }
-            existed.Name = tag.Name;
+            existed.Name = tagVM.Name;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -107,7 +118,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
                 .ThenInclude(x => x.Product)
                 .ThenInclude(x => x.ProductImages)
                 .FirstOrDefaultAsync(x => x.Id == id);
-
             if (tag is null)
             {
                 return NotFound();
