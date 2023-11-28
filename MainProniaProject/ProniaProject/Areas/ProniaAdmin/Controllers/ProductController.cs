@@ -42,8 +42,6 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductVM productVM)
         {
-         
-
             if (!ModelState.IsValid)
             {
                 productVM.Categories = await _context.Categories.ToListAsync();
