@@ -32,7 +32,8 @@ namespace ProniaProject.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 
@@ -197,7 +198,8 @@ namespace ProniaProject.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 
@@ -217,7 +219,6 @@ namespace ProniaProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Order")
@@ -246,7 +247,8 @@ namespace ProniaProject.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 
@@ -256,7 +258,7 @@ namespace ProniaProject.Migrations
             modelBuilder.Entity("ProniaProject.Models.Product", b =>
                 {
                     b.HasOne("ProniaProject.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -297,7 +299,7 @@ namespace ProniaProject.Migrations
             modelBuilder.Entity("ProniaProject.Models.ProductSize", b =>
                 {
                     b.HasOne("ProniaProject.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductSizes")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -332,6 +334,11 @@ namespace ProniaProject.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("ProniaProject.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("ProniaProject.Models.Color", b =>
                 {
                     b.Navigation("ProductColors");
@@ -342,6 +349,8 @@ namespace ProniaProject.Migrations
                     b.Navigation("ProductColors");
 
                     b.Navigation("ProductImages");
+
+                    b.Navigation("ProductSizes");
 
                     b.Navigation("ProductTags");
                 });

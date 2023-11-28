@@ -776,17 +776,17 @@
                         <div class="product-item-wrap row">
                          @foreach (Product item in Model.LatestProducts)
                             {
-                                @* <div class="col-xl-3 col-md-4 col-sm-6"> *@
-                                    @* <div class="product-item"> *@
-                                        @* <div class="product-img"> *@
-                                            @* <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id"> *@
-                                                @* <img class="primary-img"
-                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
+                                <div class="col-xl-3 col-md-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="product-img">
+                                            <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id">
+                                                <img class="primary-img"
+                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true)?.Url"
                                                      alt="Product Images" />
                                                 <img class="secondary-img"
-                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url"
-                                                     alt="Product Images" /> *@
-                                            @* </a> *@
+                                                     src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false)?.Url"
+                                                     alt="Product Images" />
+                                            </a>
                                             <div class="product-add-action">
                                                 <ul>
                                                     <li>
@@ -826,7 +826,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        @* </div> *@
+                                        </div>
                                         <div class="product-content">
                                             <a class="product-name" href="shop.html">@item.Name</a>
                                             <div class="price-box pb-1">
@@ -842,8 +842,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                   @*  </div>
-                                </div> *@
+                                    </div>
+                                </div>
                             }
   
                         </div>
@@ -946,16 +946,16 @@
             <div class="col-lg-12">
                 <div class="swiper-container product-slider">
                     <div class="swiper-wrapper">
-                        @* @foreach (var item in Model.LatestProducts)
+                        @foreach (var item in Model.LatestProducts)
                         {
                             <div class="swiper-slide product-item">
                                 <div class="product-img">
                                     <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id">
                                         <img class="primary-img"
-                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url"
+                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true)?.Url"
                                              alt="Product Images" />
                                         <img class="secondary-img"
-                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url"
+                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false)?.Url"
                                              alt="Product Images" />
                                     </a>
                                     <div class="product-add-action">
@@ -1017,7 +1017,7 @@
 
 
                         }
-                         *@
+                        
                     </div>
                 </div>
             </div>

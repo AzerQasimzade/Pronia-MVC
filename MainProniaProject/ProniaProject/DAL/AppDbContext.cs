@@ -17,7 +17,6 @@ namespace ProniaProject.DAL
         public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
-
         public DbSet<ProductSize> ProductSizes { get; set; }
         public DbSet<Size> Sizes { get; set; }
 

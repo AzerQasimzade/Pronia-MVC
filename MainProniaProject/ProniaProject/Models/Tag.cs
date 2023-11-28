@@ -11,6 +11,5 @@ namespace ProniaProject.Models
         public string Name { get; set; }
         public List<ProductTag>? ProductTags { get; set; }
 
-
     }
 }

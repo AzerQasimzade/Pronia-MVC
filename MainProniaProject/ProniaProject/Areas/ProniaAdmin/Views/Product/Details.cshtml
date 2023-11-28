@@ -2,9 +2,9 @@
 <div class="card" style="width: 18rem;">
     @foreach (var item in Model.Category.Products)
     {
-        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true).Url" class="card-img-top" alt="Product Image">
-        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false).Url" class="card-img-top" alt="Product Image">
-        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==null).Url" class="card-img-top" alt="Product Image">
+        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true)?.Url" class="card-img-top" alt="Product Image">
+        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false)?.Url" class="card-img-top" alt="Product Image">
+        <img src="~/assets/images/website-images/@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==null)?.Url" class="card-img-top" alt="Product Image">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">@item.Name</li>
             <li class="list-group-item">@item.Price</li>
@@ -13,6 +13,31 @@
             <li class="list-group-item">@item.CategoryId</li>
         </ul>
     }
+    <ul>
+        @foreach (var ptag in Model.ProductTags)
+        {
+            <li>
+                @(ptag.Tag.Name)
+            </li>
+        }
+    </ul>
+    <ul>
+        @foreach (var pcolor in Model.ProductColors)
+        {
+            <li>
+                @(pcolor.Color.Name)
+            </li>
+        }
+    </ul>
+    <ul>
+        @foreach (var psize in Model.ProductSizes)
+        {
+            <li>
+                @(psize.Size.Name)
+            </li>
+        }
+    </ul>
+   
     <div class="card-body">
         <h5 class="card-title"></h5>
         <p class="card-text"></p>
