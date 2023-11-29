@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using ProniaProject.Areas.ProniaAdmin.ViewModels;
 using ProniaProject.DAL;
 using ProniaProject.Models;
+using ProniaProject.Utilities.Enums;
+using ProniaProject.Utilities.Extensions;
+using System;
+using System.Drawing;
 
 namespace ProniaProject.Areas.ProniaAdmin.Controllers
 {
@@ -10,26 +14,24 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public ProductController(AppDbContext context)
+        public ProductController(AppDbContext context,IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public async Task<IActionResult> Index()
         {
             List<Product> products=await _context.Products
                 .Include(x=>x.Category)
-
                 .Include(x=>x.ProductImages
                 .Where(pi=>pi.IsPrimary==true))
-
                 .ToListAsync();
             return View(products);
         }
-
         public async Task<IActionResult> Create()
         {
-
             CreateProductVM productVM = new CreateProductVM
             {
                 Categories = await _context.Categories.ToListAsync(),
@@ -87,6 +89,62 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
                     return View();
                 }
             }
+
+            //---------------MAIN PHOTO CHECKING------------------
+            if (!productVM.MainPhoto.ValidateFileType(FileHelper.Image))
+            {
+                productVM.Categories = await _context.Categories.ToListAsync();
+                productVM.Tags = await _context.Tags.ToListAsync();
+                productVM.Colors = await _context.Colors.ToListAsync();
+                productVM.Sizes = await _context.Sizes.ToListAsync();
+                ModelState.AddModelError("MainPhoto", "File Type is not Matching");
+                return View(productVM);
+            }
+            if (!productVM.MainPhoto.ValidateSize(SizeHelper.gb))
+            {
+                productVM.Categories = await _context.Categories.ToListAsync();
+                productVM.Tags = await _context.Tags.ToListAsync();
+                productVM.Colors = await _context.Colors.ToListAsync();
+                productVM.Sizes = await _context.Sizes.ToListAsync();
+                ModelState.AddModelError("MainPhoto", "File Size is not Suitable");
+                return View(productVM);
+            }
+            //---------------HOVER PHOTO CHECKING------------------
+            if (!productVM.HoverPhoto.ValidateFileType(FileHelper.Image))
+            {
+                productVM.Categories = await _context.Categories.ToListAsync();
+                productVM.Tags = await _context.Tags.ToListAsync();
+                productVM.Colors = await _context.Colors.ToListAsync();
+                productVM.Sizes = await _context.Sizes.ToListAsync();
+                ModelState.AddModelError("HoverPhoto", "File Type is not Matching");
+                return View(productVM);
+            }
+            if (!productVM.HoverPhoto.ValidateSize(SizeHelper.gb))
+            {
+                productVM.Categories = await _context.Categories.ToListAsync();
+                productVM.Tags = await _context.Tags.ToListAsync();
+                productVM.Colors = await _context.Colors.ToListAsync();
+                productVM.Sizes = await _context.Sizes.ToListAsync();
+                ModelState.AddModelError("HoverPhoto", "File Size is not Suitable");
+                return View(productVM);
+            }
+
+            ProductImage main = new ProductImage
+            {
+                IsPrimary = true,
+                Url = await productVM.MainPhoto.CreateFileAsync(_env.WebRootPath, "assets", "images", "website-images"),
+                Alternative=productVM.Name
+
+            };
+
+            ProductImage hover = new ProductImage
+            {
+                IsPrimary = false,
+                Url = await productVM.HoverPhoto.CreateFileAsync(_env.WebRootPath, "assets", "images", "website-images"),
+                Alternative = productVM.Name
+            };
+
+
             Product product = new Product
             {
                 Name = productVM.Name,
@@ -96,8 +154,36 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
                 CategoryId = (int)productVM.CategoryId,
                 ProductTags = new List<ProductTag>(),
                 ProductColors = new List<ProductColor>(),
-                ProductSizes = new List<ProductSize>()
+                ProductSizes = new List<ProductSize>(),
+                ProductImages= new List<ProductImage> { main, hover }
             };
+            TempData["Message"] = "";
+            foreach (IFormFile photo in productVM.Photos ?? new List<IFormFile>())
+            {
+                if (!photo.ValidateFileType(FileHelper.Image))
+                {
+                    TempData["Message"] +=$"<div class=\"alert alert-danger\" role=\"alert\"> {photo.FileName} file's Type is not suitable,That's why creating file's Mission Failed </div>";
+                    continue;
+                }
+             
+                if (!photo.ValidateSize(SizeHelper.gb))
+                {
+                    TempData["Message"] += $"<div class=\"alert alert-danger\" role=\"alert\"> {photo.FileName} file's Size is not suitable,That's why creating file's Mission Failed </div>";
+                    continue;
+                }
+                product.ProductImages.Add(new ProductImage
+                {
+                    IsPrimary=null,
+                    Alternative=productVM.Name,
+                    Url=await photo.CreateFileAsync(_env.WebRootPath, "assets", "images", "website-images")
+                });
+            }
+           
+
+            
+
+
+
             foreach (int tagId in productVM.TagIds)
             {
                 ProductTag productTag = new ProductTag
