@@ -31,8 +31,7 @@ namespace ProniaProject.Utilities.Extensions
                         return true;
                     }
                 }
-                return false;
-            
+                return false;            
         }
         public static bool ValidateSize(this IFormFile file,SizeHelper size)
         {
