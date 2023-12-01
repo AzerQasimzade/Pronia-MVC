@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(
     opt=>opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
     );
-builder.Services.AddScoped<LayoutService>();
+builder.Services.AddScoped<FooterService>();
 var app = builder.Build();
 app.UseStaticFiles();
 app.MapControllerRoute(

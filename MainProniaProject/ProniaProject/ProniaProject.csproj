@@ -20,7 +20,6 @@
     <Folder Include="Areas\ProniaAdmin\Data\" />
     <Folder Include="Areas\ProniaAdmin\Models\" />
     <Folder Include="Migrations\" />
-    <Folder Include="ViewComponents\" />
   </ItemGroup>
 
 </Project>
