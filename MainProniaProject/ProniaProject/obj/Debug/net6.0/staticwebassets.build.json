@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0oW2HrzyOFBGtNLEzG0W9nti/LKPl+TqfVSnUIOJ/4s=",
+  "Hash": "nBSLubjZElR0Tf59h+l1UV7MJ7XpconM24XbFija6LI=",
   "Source": "ProniaProject",
   "BasePath": "_content/ProniaProject",
   "Mode": "Default",
@@ -4675,6 +4675,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\46c60b23-af61-4bab-bf49-0e34f7425f302-3-70x78.png"
     },
     {
+      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\website-images\\481b5dbf-76d5-40f2-9698-892ba7f3d9fa1-2-270x300.jpg",
+      "SourceId": "ProniaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
+      "BasePath": "_content/ProniaProject",
+      "RelativePath": "assets/images/website-images/481b5dbf-76d5-40f2-9698-892ba7f3d9fa1-2-270x300.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\481b5dbf-76d5-40f2-9698-892ba7f3d9fa1-2-270x300.jpg"
+    },
+    {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\website-images\\530672.jpg",
       "SourceId": "ProniaProject",
       "SourceType": "Discovered",
@@ -4690,6 +4707,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\530672.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\website-images\\6ef575d8-7833-4ca6-8248-5696fd8a69641-2-570x633.jpg",
+      "SourceId": "ProniaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\",
+      "BasePath": "_content/ProniaProject",
+      "RelativePath": "assets/images/website-images/6ef575d8-7833-4ca6-8248-5696fd8a69641-2-570x633.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\6ef575d8-7833-4ca6-8248-5696fd8a69641-2-570x633.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\ProniaProject\\MainProniaProject\\ProniaProject\\wwwroot\\assets\\images\\website-images\\85c6084d-793e-4842-b025-dded06c5f13c1-10-270x300.jpg",
