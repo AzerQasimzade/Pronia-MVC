@@ -18,7 +18,6 @@ namespace ProniaProject.ViewComponents
             Dictionary<string, string> settings = await _context.Settings.ToDictionaryAsync(s => s.Key, s => s.Value);
 
             return View(settings);
-
         }
     }
 }

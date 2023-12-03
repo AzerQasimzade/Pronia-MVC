@@ -1,0 +1,42 @@
+﻿@model List<BasketİtemVM>
+@{
+    decimal total = 0;
+}
+<ul class="minicart-list">
+
+    @foreach (var item in Model)
+    {
+        total += item.Subtotal;
+        <li class="minicart-product">
+            <a class="product-item_remove" asp-action="Remove" asp-controller="basket" asp-route-id="@item.Id">
+                <i class="pe-7s-close"
+                   data-tippy="Remove"
+                   data-tippy-inertia="true"
+                   data-tippy-animation="shift-away"
+                   data-tippy-delay="50"
+                   data-tippy-arrow="true"
+                   data-tippy-theme="sharpborder"></i>
+            </a>
+            <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"
+               class="product-item_img">
+                <img class="img-full"
+                     src="~/assets/images/website-images/@item.Image"
+                     alt="Product Image" />
+            </a>
+            <div class="product-item_content">
+                <a class="product-item_title"
+                   asp-action="detail" asp-controller="product" asp-route-id="@item.Id">@item.Name</a>
+                <span class="product-item_quantity">@item.Count x $@item.Price</span>
+            </div>
+        </li>
+    }
+</ul>
+    </div>
+<div class="minicart-item_total">
+    <span>Total</span>
+    <span class="ammount">$@total</span>
+</div>
+<div class="group-btn_wrap d-grid gap-2">
+    <a asp-action="index" asp-controller="basket" class="btn btn-dark">View Cart</a>
+    <a href="checkout.html" class="btn btn-dark">Checkout</a>
+</div>
