@@ -8,7 +8,6 @@ namespace ProniaProject.ViewComponents
     public class ProductViewComponent:ViewComponent
     {
         private readonly AppDbContext _context;
-
         public ProductViewComponent(AppDbContext context)
         {
             _context = context;

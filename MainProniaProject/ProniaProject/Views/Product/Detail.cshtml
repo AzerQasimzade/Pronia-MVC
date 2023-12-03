@@ -476,9 +476,24 @@
     </div>
 
     <!-- Begin Product Area -->
-    <div class="product-area section-space-y-axis-90">
-        @await Html.PartialAsync("ProductPartialView",Model.Relatedproducts)
-    </div>
+    @if (Model.Relatedproducts.Count != 0)
+    {
+        <div class="product-area section-space-y-axis-90">
+            <div class="container">
+                <div class="row">
+                    <div class="section-title-wrap without-tab">
+                        <h2 class="section-title">Related Products</h2>
+                        <p class="section-desc">
+                            Contrary to popular belief, Lorem Ipsum is not simply random
+                            text. It has roots in a piece of classical Latin literature
+                        </p>
+                    </div>
+                    @await Html.PartialAsync("ProductPartialView",Model.Relatedproducts)
+                </div>
+            </div>
+        </div>
+
+    }
     <!-- Product Area End Here -->
 </main>
 <!-- Main Content Area End Here  -->

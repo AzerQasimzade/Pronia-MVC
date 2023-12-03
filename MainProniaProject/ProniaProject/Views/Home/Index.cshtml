@@ -1,12 +1,10 @@
-﻿
-@model HomeVM
-
+﻿@model HomeVM
 <!-- Begin Slider Area -->
 <div class="slider-area">
     <!-- Main Slider -->
     <div class="swiper-container main-slider swiper-arrow with-bg_white">
         <div class="swiper-wrapper">
-            @foreach (Slide item in Model.Slides)
+            @foreach (Slide slide in Model.Slides)
             {
                 <div class="swiper-slide animation-style-01">
                     <div class="slide-inner style-1 bg-height"
@@ -15,10 +13,10 @@
                             <div class="row">
                                 <div class="col-lg-6 order-2 order-lg-1 align-self-center">
                                     <div class="slide-content text-black">
-                                        <span class="offer">@item.SubTitle</span>
-                                        <h2 class="title">@item.Title</h2>
+                                        <span class="offer">@slide.Title</span>
+                                        <h2 class="title">@slide.Title</h2>
                                         <p class="short-desc">
-                                            @item.Description
+                                            @slide.Description
                                         </p>
                                         <div class="btn-wrap">
                                             <a class="btn btn-custom-size xl-size btn-pronia-primary"
@@ -30,7 +28,7 @@
                                     <div class="inner-img">
                                         <div class="scene fill">
                                             <div class="expand-width" data-depth="0.2">
-                                                <img src="~/assets/images/slider/@item.Image"
+                                                <img src="~/assets/images/website-images//@slide.Image"
                                                      alt="Inner Image" />
                                             </div>
                                         </div>
@@ -100,7 +98,70 @@
 <!-- Shipping Area End Here -->
 <!-- Begin Product Area -->
 <div class="product-area section-space-top-100">
-    @await Html.PartialAsync("ProductPartialView",Model.Products)
+    <div class="container">
+        <div class="section-title-wrap">
+            <h2 class="section-title mb-0">Our Products</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav product-tab-nav tab-style-1"
+                    id="myTab"
+                    role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="active"
+                           id="featured-tab"
+                           data-bs-toggle="tab"
+                           href="#featured"
+                           role="tab"
+                           aria-controls="featured"
+                           aria-selected="true">
+                            Featured
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a id="bestseller-tab"
+                           data-bs-toggle="tab"
+                           href="#bestseller"
+                           role="tab"
+                           aria-controls="bestseller"
+                           aria-selected="false">
+                            Premium
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a id="latest-tab"
+                           data-bs-toggle="tab"
+                           href="#latest"
+                           role="tab"
+                           aria-controls="latest"
+                           aria-selected="false">
+                            Latest
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active"
+                         id="featured"
+                         role="tabpanel"
+                         aria-labelledby="featured-tab">
+                        @await Component.InvokeAsync("Product",1)
+                    </div>
+                    <div class="tab-pane fade"
+                         id="bestseller"
+                         role="tabpanel"
+                         aria-labelledby="bestseller-tab">
+                        @await Component.InvokeAsync("Product",2)
+                    </div>
+                    <div class="tab-pane fade"
+                         id="latest"
+                         role="tabpanel"
+                         aria-labelledby="latest-tab">
+                        @await Component.InvokeAsync("Product",3)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Product Area End Here -->
 <!-- Begin Banner Area -->
@@ -192,84 +253,8 @@
                     text. It has roots in a piece of classical Latin literature
                 </p>
             </div>
-            <div class="col-lg-12">
-                <div class="swiper-container product-slider">
-                    <div class="swiper-wrapper">
-                        @foreach (var item in Model.LatestProducts)
-                        {
-                            <div class="swiper-slide product-item">
-                                <div class="product-img">
-                                    <a asp-controller="product" asp-action="detail" asp-route-Id="@item.Id">
-                                        <img class="primary-img"
-                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==true)?.Url"
-                                             alt="Product Images" />
-                                        <img class="secondary-img"
-                                             src="~/assets/images/website-images//@item.ProductImages.FirstOrDefault(x=>x.IsPrimary==false)?.Url"
-                                             alt="Product Images" />
-                                    </a>
-                                    <div class="product-add-action">
-                                        <ul>
-                                            <li>
-                                                <a href="wishlist.html"
-                                                   data-tippy="Add to wishlist"
-                                                   data-tippy-inertia="true"
-                                                   data-tippy-animation="shift-away"
-                                                   data-tippy-delay="50"
-                                                   data-tippy-arrow="true"
-                                                   data-tippy-theme="sharpborder">
-                                                    <i class="pe-7s-like"></i>
-                                                </a>
-                                            </li>
-                                            <li class="quuickview-btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#quickModal">
-                                                <a href="#"
-                                                   data-tippy="Quickview"
-                                                   data-tippy-inertia="true"
-                                                   data-tippy-animation="shift-away"
-                                                   data-tippy-delay="50"
-                                                   data-tippy-arrow="true"
-                                                   data-tippy-theme="sharpborder">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html"
-                                                   data-tippy="Add to cart"
-                                                   data-tippy-inertia="true"
-                                                   data-tippy-animation="shift-away"
-                                                   data-tippy-delay="50"
-                                                   data-tippy-arrow="true"
-                                                   data-tippy-theme="sharpborder">
-                                                    <i class="pe-7s-cart"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <a class="product-name" asp-controller="product" asp-action="detail" asp-route-Id="@item.Name">@item.Name</a>
-                                    <div class="price-box pb-1">
-                                        <span class="new-price">$@item.Price</span>
-                                    </div>
-                                    <div class="rating-box">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+            @await Html.PartialAsync("ProductPartialView",Model.Products)
 
-
-                        }
-                        
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
