@@ -96,7 +96,6 @@ namespace ProniaProject.Controllers
             if (id <= 0) return BadRequest();
             Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product is null) return NotFound();
-
             List<BasketCookieItemVM> basket;
             basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(Request.Cookies["Basket"]);
             BasketCookieItemVM existed = basket.FirstOrDefault(x => x.Id == id);
@@ -104,6 +103,44 @@ namespace ProniaProject.Controllers
             string json=JsonConvert.SerializeObject(basket);
             Response.Cookies.Append("Basket",json);
             return RedirectToAction(nameof(Index),"Basket");          
+        }
+
+        public async Task<IActionResult> PlusBasket(int id)
+        {
+            if (id <= 0) return BadRequest();
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (product is null) return NotFound();
+            List<BasketCookieItemVM> basket;
+            basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(Request.Cookies["Basket"]);
+            BasketCookieItemVM existed = basket.FirstOrDefault(x => x.Id == id);
+            if (existed is not null)
+            {
+                basket.FirstOrDefault(x => x.Id == id).Count++;
+            }
+            string json = JsonConvert.SerializeObject(basket);
+            Response.Cookies.Append("Basket", json);
+            return RedirectToAction(nameof(Index), "Basket");
+        }
+        public async Task<IActionResult> MinusBasket(int id)
+        {
+            if (id <= 0) return BadRequest();
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (product is null) return NotFound();
+            List<BasketCookieItemVM> basket;
+            basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(Request.Cookies["Basket"]);
+            BasketCookieItemVM existed = basket.FirstOrDefault(x => x.Id == id);     
+            if (existed is not null)
+            {
+                basket.FirstOrDefault(x => x.Id == id).Count--;
+
+                if (basket.FirstOrDefault(x => x.Id == id).Count == 0)
+                {
+                    basket.Remove(existed);
+                }
+            } 
+            string json = JsonConvert.SerializeObject(basket);
+            Response.Cookies.Append("Basket", json);
+            return RedirectToAction(nameof(Index), "Basket");
         }
     }
 }
