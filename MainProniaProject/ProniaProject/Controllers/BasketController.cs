@@ -49,8 +49,6 @@ namespace ProniaProject.Controllers
             if (id <= 0) return BadRequest();
             Product product= await _context.Products.FirstOrDefaultAsync(p=>p.Id==id);
             if (product is null) return NotFound();
-
-
             List<BasketCookieItemVM> basket;
             if (Request.Cookies["Basket"] is null)
             {
@@ -104,7 +102,6 @@ namespace ProniaProject.Controllers
             Response.Cookies.Append("Basket",json);
             return RedirectToAction(nameof(Index),"Basket");          
         }
-
         public async Task<IActionResult> PlusBasket(int id)
         {
             if (id <= 0) return BadRequest();

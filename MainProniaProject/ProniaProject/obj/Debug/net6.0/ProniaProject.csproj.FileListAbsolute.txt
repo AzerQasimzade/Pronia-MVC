@@ -556,3 +556,8 @@ C:\Users\ca.r214.03\Desktop\ProniaProject\MainProniaProject\ProniaProject\obj\De
 C:\Users\ca.r214.03\Desktop\ProniaProject\MainProniaProject\ProniaProject\obj\Debug\net6.0\ProniaProject.pdb
 C:\Users\ca.r214.03\Desktop\ProniaProject\MainProniaProject\ProniaProject\obj\Debug\net6.0\ProniaProject.genruntimeconfig.cache
 C:\Users\ca.r214.03\Desktop\ProniaProject\MainProniaProject\ProniaProject\obj\Debug\net6.0\ref\ProniaProject.dll
+C:\Users\User\Desktop\ProniaProject\MainProniaProject\ProniaProject\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\User\Desktop\ProniaProject\MainProniaProject\ProniaProject\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\User\Desktop\ProniaProject\MainProniaProject\ProniaProject\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\User\Desktop\ProniaProject\MainProniaProject\ProniaProject\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\User\Desktop\ProniaProject\MainProniaProject\ProniaProject\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
