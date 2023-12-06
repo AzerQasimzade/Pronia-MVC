@@ -9,11 +9,11 @@ namespace ProniaProject.Utilities.Extensions
 {
     public static class RegisterValidator
     {
-        public static bool IsEmailValid(this RegisterVM userVM)
+        public static bool IsEmailValid(this string userVM)
         {
 
             Regex regex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-            bool result = regex.Match(userVM.Email).Success;
+            bool result = regex.Match(userVM).Success;
             return result; 
         }
         public static string Capitalize(this string name)
@@ -28,7 +28,24 @@ namespace ProniaProject.Utilities.Extensions
             }
             return string.Join(" ", strings);
         }
-      
+        public static bool IsDigit(this string name)
+        {
+            bool result = false;
+            foreach (var item in name)
+            {
+                result = Char.IsDigit(item);
+            }
+            return result;
+        }
+        public static bool IsSymbol(this string name)
+        {
+            bool result = false;
+            foreach (var item in name)
+            {
+                result = Char.IsSymbol(item);
+            }
+            return result;
+        }
     }
 }
 

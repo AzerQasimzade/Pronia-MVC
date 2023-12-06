@@ -6,6 +6,7 @@ using ProniaProject.ViewModels;
 
 namespace ProniaProject.Controllers
 {
+
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;

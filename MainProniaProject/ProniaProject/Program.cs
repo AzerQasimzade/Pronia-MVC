@@ -26,6 +26,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 builder.Services.AddScoped<FooterService>();
 var app = builder.Build();
 app.UseAuthentication();
+app.UseRouting();
 app.UseAuthorization();    
 app.UseStaticFiles();
 app.MapControllerRoute(
