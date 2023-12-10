@@ -28,7 +28,7 @@ namespace ProniaProject.Controllers
         public async Task<IActionResult> Register(RegisterVM userVM)
         {
             if (!ModelState.IsValid) return View(userVM);
-            if (RegisterValidator.IsEmailValid(userVM.Email)==false)
+            if (RegisterValidator.IsEmailValid(userVM.Email)!=false)
             {
                 ModelState.AddModelError("Email", "Email is not true");
                 return View(userVM);

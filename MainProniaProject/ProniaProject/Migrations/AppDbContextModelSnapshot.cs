@@ -246,6 +246,9 @@ namespace ProniaProject.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -255,6 +258,8 @@ namespace ProniaProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -294,6 +299,38 @@ namespace ProniaProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("ProniaProject.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("PurchasedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ProniaProject.Models.Product", b =>
@@ -569,10 +606,14 @@ namespace ProniaProject.Migrations
             modelBuilder.Entity("ProniaProject.Models.BasketItem", b =>
                 {
                     b.HasOne("ProniaProject.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("BasketItems")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ProniaProject.Models.Order", "Orders")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("ProniaProject.Models.Product", "Product")
                         .WithMany()
@@ -582,7 +623,20 @@ namespace ProniaProject.Migrations
 
                     b.Navigation("AppUser");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ProniaProject.Models.Order", b =>
+                {
+                    b.HasOne("ProniaProject.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("ProniaProject.Models.Product", b =>
@@ -664,6 +718,11 @@ namespace ProniaProject.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("ProniaProject.Models.AppUser", b =>
+                {
+                    b.Navigation("BasketItems");
+                });
+
             modelBuilder.Entity("ProniaProject.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -672,6 +731,11 @@ namespace ProniaProject.Migrations
             modelBuilder.Entity("ProniaProject.Models.Color", b =>
                 {
                     b.Navigation("ProductColors");
+                });
+
+            modelBuilder.Entity("ProniaProject.Models.Order", b =>
+                {
+                    b.Navigation("BasketItems");
                 });
 
             modelBuilder.Entity("ProniaProject.Models.Product", b =>

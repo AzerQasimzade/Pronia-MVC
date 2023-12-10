@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProniaProject.DAL;
 using ProniaProject.Models;
+using ProniaProject.Services;
 using ProniaProject.ViewModels;
 
 namespace ProniaProject.Controllers

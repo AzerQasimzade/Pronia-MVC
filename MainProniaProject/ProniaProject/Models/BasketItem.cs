@@ -9,6 +9,9 @@
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public int Count { get; set; }
+        public Order? Orders { get; set; }
+        public int? OrderId { get; set; }
+
 
 
     }

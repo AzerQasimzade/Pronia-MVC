@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProniaProject.DAL;
+using ProniaProject.Interfaces;
 using ProniaProject.Models;
 using ProniaProject.Services;
 
@@ -24,6 +25,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(3);
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<FooterService>();
+builder.Services.AddScoped<IEmailService,EmailService>();
+
 var app = builder.Build();
 app.UseAuthentication();
 app.UseRouting();

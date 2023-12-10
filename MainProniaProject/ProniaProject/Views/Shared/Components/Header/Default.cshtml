@@ -1,4 +1,4 @@
-﻿@model Dictionary<string,string>
+﻿@model BasketHomeVM
 
 <header class="main-header-area">
     <div class="header-top bg-pronia-primary d-none d-lg-block">
@@ -56,10 +56,10 @@
                     <div class="header-middle-wrap position-relative">
                         <div class="header-contact d-none d-lg-flex">
                             <i class="pe-7s-call"></i>
-                            <a href="tel://@Model["Phone"]">@Model["Phone"]</a>
+                            <a href="tel://@Model.Settings["Phone"]">@Model.Settings["Phone"]</a>
                         </div>
                         <a asp-controller="home" asp-action="index" class="header-logo">
-                            <img src="~/assets/images/logo/@Model["Logo"]" alt="Header Logo" />
+                            <img src="~/assets/images/logo/@Model.Settings["Logo"]" alt="Header Logo" />
                         </a>
 
                         <div class="header-right">
@@ -69,7 +69,7 @@
                                        class="search-btn bt"
                                        data-bs-toggle="modal"
                                        data-bs-target="#exampleModal">
-                                        @Html.Raw(Model["SearchIcon"])
+                                        @Html.Raw(Model.Settings["SearchIcon"])
                                     </a>
                                 </li>
                                 <li class="dropdown d-none d-lg-block">
@@ -108,7 +108,7 @@
                                 <li class="minicart-wrap me-3 me-lg-0">
                                     <a href="#miniCart" class="minicart-btn toolbar-btn">
                                         <i class="pe-7s-shopbag"></i>
-                                        <span class="quantity">@Model.Count</span>
+                                        <span class="quantity">@Model.BasketItems.Count</span>
                                     </a>
                                 </li>
                                 <li class="mobile-menu_wrap d-block d-lg-none">
@@ -257,7 +257,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-6">
                         <a asp-controller="home" asp-action="index" class="header-logo">
-                            <img src="~/assets/images/logo/@Model["Logo"]" alt="Header Logo" />
+                            <img src="~/assets/images/logo/@Model.Settings["Logo"]" alt="Header Logo" />
                         </a>
                     </div>
                     <div class="col-lg-6 d-none d-lg-block">
@@ -389,7 +389,7 @@
                                        class="search-btn bt"
                                        data-bs-toggle="modal"
                                        data-bs-target="#exampleModal">
-                                        @Html.Raw(Model["SearchIcon"])
+                                        @Html.Raw(Model.Settings["SearchIcon"])
                                     </a>
                                 </li>
                                 <li class="dropdown d-none d-lg-block">
@@ -419,7 +419,7 @@
                                 <li class="minicart-wrap me-3 me-lg-0">
                                     <a href="#miniCart" class="minicart-btn toolbar-btn">
                                         <i class="pe-7s-shopbag"></i>
-                                        <span class="quantity">@Model.</span>
+                                        <span class="quantity">@Model.BasketItems.Count</span>
                                     </a>
                                 </li>
                                 <li class="mobile-menu_wrap d-block d-lg-none">
@@ -443,7 +443,7 @@
                 </div>
                 <div class="header-contact offcanvas-contact">
                     <i class="pe-7s-call"></i>
-                    <a href="tel://@Model["Phone"]">@Model["Phone"]</a>
+                    <a href="tel://@Model.Settings["Phone"]">@Model.Settings["Phone"]</a>
                 </div>
                 <div class="offcanvas-user-info">
                     <ul class="dropdown-wrap">
@@ -779,7 +779,46 @@
                            data-tippy-theme="sharpborder"></i>
                     </a>
                 </div>
-                @await Component.InvokeAsync("Basket")
+                @{
+                    decimal total = 0;
+                }
+                <ul class="minicart-list">
+
+                    @foreach (var item in Model.BasketItems)
+                    {
+                        total += item.Subtotal;
+                        <li class="minicart-product">
+                            <a class="product-item_remove" asp-action="Remove" asp-controller="basket" asp-route-id="@item.Id">
+                                <i class="pe-7s-close"
+                                   data-tippy="Remove"
+                                   data-tippy-inertia="true"
+                                   data-tippy-animation="shift-away"
+                                   data-tippy-delay="50"
+                                   data-tippy-arrow="true"
+                                   data-tippy-theme="sharpborder"></i>
+                            </a>
+                            <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"
+                               class="product-item_img">
+                                <img class="img-full"
+                                     src="~/assets/images/website-images/@item.Image"
+                                     alt="Product Image" />
+                            </a>
+                            <div class="product-item_content">
+                                <a class="product-item_title"
+                                   asp-action="detail" asp-controller="product" asp-route-id="@item.Id">@item.Name</a>
+                                <span class="product-item_quantity">@item.Count x $@item.Price</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="minicart-item_total">
+                    <span>Total</span>
+                    <span class="ammount">$@total</span>
+                </div>
+                <div class="group-btn_wrap d-grid gap-2">
+                    <a asp-action="index" asp-controller="basket" class="btn btn-dark">View Cart</a>
+                    <a href="checkout.html" class="btn btn-dark">Checkout</a>
+                </div>
         </div>
     </div>
     <div class="global-overlay"></div>
