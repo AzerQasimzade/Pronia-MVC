@@ -31,8 +31,6 @@ namespace ProniaProject.Controllers
 
             return View(home);
 
-
-
         }
         public IActionResult About()
         {

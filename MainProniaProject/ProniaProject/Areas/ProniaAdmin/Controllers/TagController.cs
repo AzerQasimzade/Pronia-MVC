@@ -17,12 +17,25 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            List<Tag> tags = await _context.Tags
+            if (page<1)
+            {
+                return BadRequest();
+            }
+            int count=await _context.Tags.CountAsync();
+            
+          
+            List<Tag> tags = await _context.Tags.Skip((page-1)*3).Take(3)
                 .Include(x => x.ProductTags)
                 .ToListAsync();
-            return View(tags);
+            PaginationVM<Tag> paginationVM = new PaginationVM<Tag>
+            {
+                TotalPage = Math.Ceiling((double)count / 3),
+                CurrentPage = page,
+                Items = tags
+            };
+            return View(paginationVM);
         }
         public IActionResult Create()
         {

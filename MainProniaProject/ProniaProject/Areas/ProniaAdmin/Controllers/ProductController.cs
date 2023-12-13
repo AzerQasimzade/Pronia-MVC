@@ -23,14 +23,31 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
             _context = context;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            List<Product> products = await _context.Products
+            if (page<1)
+            {
+                return BadRequest();
+            }       
+            int count = await _context.Products.CountAsync();
+            if (page > Math.Ceiling((double)count / 6))
+            {
+                return BadRequest();
+            }
+            List<Product> products = await _context.Products.Skip((page-1)*6).Take(6)
                 .Include(x => x.Category)
                 .Include(x => x.ProductImages
                 .Where(pi => pi.IsPrimary == true))
                 .ToListAsync();
-            return View(products);
+
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>()
+            {
+                TotalPage = Math.Ceiling((double)count / 6),
+                CurrentPage = page,
+                Items = products
+            };
+            
+            return View(paginationVM);
         }
         [Authorize(Roles = "Admin,Moderator")]
 
@@ -480,7 +497,7 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         }
         [Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id) 
         {
             if (id <= 0) return BadRequest();
             Product product=await _context.Products.Include(x=>x.ProductImages).FirstOrDefaultAsync(x=>x.Id==id);

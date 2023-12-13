@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProniaProject.DAL;
 using ProniaProject.Models;
+using ProniaProject.Utilities.Exceptions;
 using ProniaProject.ViewModels;
 
 namespace ProniaProject.Controllers
@@ -11,12 +12,6 @@ namespace ProniaProject.Controllers
     {
         private readonly AppDbContext _context;
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
-
         public ProductController(AppDbContext context)
         {
             _context = context;
@@ -25,7 +20,7 @@ namespace ProniaProject.Controllers
         {
             if (id<=0)
             {
-                return BadRequest();
+                throw new WrongRequestException("Wrong Request!");
             }
             Product product=await _context.Products
                 .Include(x=>x.ProductSizes)
@@ -39,7 +34,7 @@ namespace ProniaProject.Controllers
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (product is null)
             {
-                return NotFound();
+                throw new NotFoundException("Product cannot Found!");
             }
             List<Product> relatedproducts =await _context.Products   
                 .Include(x=>x.Category)

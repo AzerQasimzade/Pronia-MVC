@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProniaProject.Areas.ProniaAdmin.ViewModels;
 using ProniaProject.DAL;
 using ProniaProject.Models;
+using ProniaProject.ViewModels;
 
 namespace ProniaProject.Areas.ProniaAdmin.Controllers
 {
@@ -15,12 +17,27 @@ namespace ProniaProject.Areas.ProniaAdmin.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult>Index()
+        public async Task<IActionResult>Index(int page=1)
         {
-            List<Category> categories=await _context.Categories
+            if (page<1)
+            {
+                return BadRequest();
+            }
+            int count = await _context.Categories.CountAsync();
+            if (page > Math.Ceiling((double)count / 2))
+            {
+                return BadRequest();
+            }
+            List<Category> categories=await _context.Categories.Skip((page - 1) * 2).Take(2)
                 .Include(x=>x.Products)
                 .ToListAsync();
-            return View(categories);
+            PaginationVM<Category> paginationVM = new PaginationVM<Category>()
+            {
+                TotalPage = Math.Ceiling((double)count / 2),
+                CurrentPage = page,
+                Items = categories
+            };
+            return View(paginationVM);
         }
         public IActionResult Create()
         {
